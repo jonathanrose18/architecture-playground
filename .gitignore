@@ -1,0 +1,6 @@
+# common
+.DS_Store
+.env
+.venv
+.vscode
+node_modules
