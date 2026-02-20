@@ -1,6 +1,5 @@
 # common
 .DS_Store
-.env
-.venv
+
+# vscode
 .vscode
-node_modules
