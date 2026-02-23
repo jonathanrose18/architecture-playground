@@ -1,0 +1,23 @@
+{
+	"name": "@repo/database",
+	"version": "0.0.1",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"db:generate": "prisma generate",
+		"db:migrate": "prisma migrate dev"
+	},
+	"dependencies": {
+		"@prisma/adapter-better-sqlite3": "^6.0.0",
+		"@prisma/client": "^7.4.1",
+		"better-sqlite3": "^11.0.0",
+		"dotenv": "^16.0.0"
+	},
+	"devDependencies": {
+		"@types/better-sqlite3": "^7.0.0",
+		"prisma": "^7.4.1",
+		"typescript": "latest"
+	}
+}
