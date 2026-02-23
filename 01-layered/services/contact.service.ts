@@ -5,6 +5,12 @@ export const contactService = {
     return contactRepository.getAll();
   },
 
+  async getByEmail(email: string) {
+    const contact = await contactRepository.getByEmail(email);
+    if (!contact) throw new Error('Contact not found');
+    return contact;
+  },
+
   async getById(id: string) {
     const contact = await contactRepository.getById(id);
     if (!contact) throw new Error('Contact not found');
@@ -19,6 +25,7 @@ export const contactService = {
 
   async update(id: string, data: ContactUpdateInput) {
     await this.getById(id);
+
     return contactRepository.update(id, data);
   },
 
