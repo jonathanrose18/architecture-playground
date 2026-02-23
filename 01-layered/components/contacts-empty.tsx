@@ -2,10 +2,11 @@ import { Contact2Icon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
+import { cn } from '@/lib/utils';
 
-export function ContactsEmpty() {
+export function ContactsEmpty({ className }: { className?: string }) {
   return (
-    <Empty>
+    <Empty className={cn(className)}>
       <EmptyHeader>
         <EmptyMedia variant='icon'>
           <Contact2Icon />
@@ -16,7 +17,7 @@ export function ContactsEmpty() {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className='flex-row justify-center gap-2'>
-        <Button>Create Contact</Button>
+        <Button type='button'>Create Contact</Button>
       </EmptyContent>
     </Empty>
   );

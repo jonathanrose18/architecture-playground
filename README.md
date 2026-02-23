@@ -43,9 +43,6 @@ cd 01-layered
 # Install dependencies
 npm install
 
-# Set up the database
-npx prisma migrate dev
-
 # Start the dev server
 npm run dev
 ```
