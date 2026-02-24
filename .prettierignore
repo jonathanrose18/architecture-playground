@@ -1,0 +1,32 @@
+# Dependencies
+**/node_modules
+**/.pnp
+**/.pnp.*
+**/.yarn
+
+# Build/cache outputs
+**/.next
+**/.turbo
+**/.vercel
+**/out
+**/build
+**/dist
+**/coverage
+**/*.tsbuildinfo
+**/next-env.d.ts
+
+# Generated files
+packages/database/src/generated/prisma/**
+packages/database/prisma/migrations/**/migration.sql
+
+# Local env files (keep templates formatted)
+**/.env*
+!**/.env.example
+
+# Logs and local artifacts
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+**/.DS_Store

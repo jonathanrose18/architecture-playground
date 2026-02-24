@@ -1,17 +1,9 @@
-import "@workspace/ui/globals.css";
+import '@workspace/ui/globals.css';
 
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}): React.JSX.Element {
-	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
-		</html>
-	);
+export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
+   return (
+      <html lang='en'>
+         <body>{children}</body>
+      </html>
+   );
 }

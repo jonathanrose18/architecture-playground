@@ -22,10 +22,10 @@ A simple CRUD app for managing contacts. Every version supports:
 
 | #   | Architecture                     | Core Idea                                                      |
 | --- | -------------------------------- | -------------------------------------------------------------- |
-| 1   | **Layered**                      | Horizontal layers: UI -> Service -> Repository -> DB          |
+| 1   | **Layered**                      | Horizontal layers: UI -> Service -> Repository -> DB           |
 | 2   | **Feature-Sliced Design**        | Vertical slices by feature, strict dependency direction        |
-| 3   | **Hexagonal (Ports & Adapters)** | Framework-free core, adapters at the edges                    |
-| 4   | **Clean Architecture**           | Four concentric rings with strict inward dependencies         |
+| 3   | **Hexagonal (Ports & Adapters)** | Framework-free core, adapters at the edges                     |
+| 4   | **Clean Architecture**           | Four concentric rings with strict inward dependencies          |
 | 5   | **CQRS**                         | Reads and writes as separate concerns with a command/query bus |
 
 ## Turborepo Setup
