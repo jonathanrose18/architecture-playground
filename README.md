@@ -16,7 +16,7 @@ A simple CRUD app for managing contacts. Every version supports:
 - Edit a contact
 - Delete a contact
 
-**Stack:** Next.js (App Router), Prisma, SQLite, shadcn/ui
+**Stack:** Next.js (App Router), Prisma, PostgreSQL, shadcn/ui
 
 ## Architectures
 
@@ -33,30 +33,46 @@ A simple CRUD app for managing contacts. Every version supports:
 This repository is configured as a Turborepo with:
 
 - `apps/*` for app implementations
-- `packages/db` as shared Prisma package (`@workspace/db`)
+- `packages/database` as shared Prisma package (`@workspace/database`)
+- `packages/ui` as shared ui package (`@workspace/ui`)
 
 ## Getting Started
 
-```bash
-# 1) Clone repository
-# git clone <repo-url>
-cd architecture-playground
+1. Install workspace dependencies:
 
-# 2) Create shared env
-cp .env.example .env
+   ```bash
+   pnpm install
+   ```
 
-# 3) Install workspace dependencies
-pnpm install
+2. Start PostgreSQL:
 
-# 4) Generate Prisma client from shared db package
-pnpm db:generate
+   ```bash
+   pnpm db:up
+   ```
 
-# 5) Run migrations
-pnpm db:migrate
+3. Create your local env file:
 
-# 6) Start layered app only
-pnpm dev -- --filter=@workspace/01-layered
-```
+   ```bash
+   cp apps/01-layered/.env.example apps/01-layered/.env
+   ```
+
+4. Run Prisma migrations:
+
+   ```bash
+   pnpm db:migrate
+   ```
+
+5. Generate Prisma client:
+
+   ```bash
+   pnpm db:generate
+   ```
+
+6. Start development:
+
+   ```bash
+   pnpm dev
+   ```
 
 ## Project Structure
 
@@ -69,9 +85,18 @@ architecture-playground/
 │   ├── 04-clean-architecture/
 │   └── 05-cqrs/
 ├── packages/
-│   └── db/
-└── data/
+│   └── database/
+│   └── ui/
 ```
+
+## Database Commands
+
+- `pnpm db:up` starts PostgreSQL via Docker Compose
+- `pnpm db:down` stops containers
+- `pnpm db:logs` tails PostgreSQL logs
+- `pnpm db:migrate` runs Prisma migrations
+- `pnpm db:generate` generates Prisma client
+- `pnpm db:studio` opens Prisma Studio
 
 ## Purpose
 

@@ -1,6 +1,6 @@
-
 import 'dotenv/config';
-import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3';
+
+import { PrismaPg } from '@prisma/adapter-pg';
 
 import { PrismaClient } from './generated/prisma';
 
@@ -8,14 +8,13 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
 const url = process.env.DATABASE_URL;
 
-if(!url) {
-    throw new Error("DATABASE_URL in packages/database is not configured.")
+if (!url) {
+  throw new Error('DATABASE_URL in packages/database is not configured.');
 }
 
-const adapter = new PrismaBetterSQLite3({ url });
+const adapter = new PrismaPg({ connectionString: url });
 
-export const prisma =
-  globalForPrisma.prisma ?? new PrismaClient({ adapter });
+export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
 
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;

@@ -6,17 +6,16 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev"
+    "db:generate": "DATABASE_URL=\"${DATABASE_URL:-postgresql://postgres:postgres@localhost:5432/architecture_playground?schema=public}\" prisma generate",
+    "db:migrate": "DATABASE_URL=\"${DATABASE_URL:-postgresql://postgres:postgres@localhost:5432/architecture_playground?schema=public}\" prisma migrate dev"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^6.0.0",
+    "@prisma/adapter-pg": "^7.4.1",
     "@prisma/client": "^7.4.1",
-    "better-sqlite3": "^11.0.0",
+    "@prisma/client-runtime-utils": "^7.4.1",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.0.0",
     "prisma": "^7.4.1",
     "typescript": "latest"
   }

@@ -13,8 +13,8 @@
 	"dependencies": {
 		"@workspace/database": "workspace:*",
 		"@workspace/ui": "workspace:*",
-		"better-sqlite3": "^11.0.0",
 		"next": "catalog:",
+		"pg": "^8.18.0",
 		"react": "catalog:react19",
 		"react-dom": "catalog:react19"
 	},
