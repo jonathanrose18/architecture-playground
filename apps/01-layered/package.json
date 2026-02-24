@@ -1,28 +1,30 @@
 {
-	"name": "01-layered",
+	"name": "docs",
 	"version": "0.1.0",
+	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev --port 3000",
 		"build": "next build",
 		"start": "next start",
-		"lint": "biome check",
-		"format": "biome format --write"
+		"lint": "eslint --max-warnings 0",
+		"check-types": "next typegen && tsc --noEmit"
 	},
 	"dependencies": {
-		"@repo/database": "workspace:*",
-		"next": "16.1.6",
-		"react": "19.2.3",
-		"react-dom": "19.2.3"
+		"@workspace/database": "workspace:*",
+		"@workspace/ui": "workspace:*",
+		"better-sqlite3": "^11.0.0",
+		"next": "catalog:",
+		"react": "catalog:react19",
+		"react-dom": "catalog:react19"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.2.0",
-		"@tailwindcss/postcss": "^4",
-		"@types/node": "^20",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
-		"babel-plugin-react-compiler": "1.0.0",
-		"tailwindcss": "^4",
-		"typescript": "^5"
+		"@workspace/eslint-config": "workspace:*",
+		"@workspace/typescript-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:react19",
+		"@types/react-dom": "catalog:react19",
+		"eslint": "catalog:",
+		"typescript": "catalog:"
 	}
 }

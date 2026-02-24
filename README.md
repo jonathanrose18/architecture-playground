@@ -33,7 +33,7 @@ A simple CRUD app for managing contacts. Every version supports:
 This repository is configured as a Turborepo with:
 
 - `apps/*` for app implementations
-- `packages/db` as shared Prisma package (`@repo/db`)
+- `packages/db` as shared Prisma package (`@workspace/db`)
 
 ## Getting Started
 
@@ -55,7 +55,7 @@ pnpm db:generate
 pnpm db:migrate
 
 # 6) Start layered app only
-pnpm dev -- --filter=@repo/01-layered
+pnpm dev -- --filter=@workspace/01-layered
 ```
 
 ## Project Structure
