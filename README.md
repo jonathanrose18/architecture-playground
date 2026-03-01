@@ -1,6 +1,6 @@
 # architecture-playground
 
-> Same app. Different architectures. A personal playground for exploring how architectural decisions shape maintainability, testability, and complexity.
+Same app. Different architectures. A personal playground for exploring how architectural decisions shape maintainability, testability, and complexity.
 
 ## What is this?
 
@@ -8,25 +8,19 @@ This repo implements the same Next.js contact management app. Each version is id
 
 ## The App
 
-A simple CRUD app for managing contacts. Every version supports:
-
-- List all contacts
-- View contact details
-- Create a contact
-- Edit a contact
-- Delete a contact
+A simple CRUD app for managing contacts
 
 **Stack:** Next.js (App Router), Prisma, PostgreSQL, shadcn/ui
 
 ## Architectures
 
-| #   | Architecture                     | Core Idea                                                      |
-| --- | -------------------------------- | -------------------------------------------------------------- |
-| 1   | **Layered**                      | Horizontal layers: UI -> Service -> Repository -> DB           |
-| 2   | **Feature-Sliced Design**        | Vertical slices by feature, strict dependency direction        |
-| 3   | **Hexagonal (Ports & Adapters)** | Framework-free core, adapters at the edges                     |
-| 4   | **Clean Architecture**           | Four concentric rings with strict inward dependencies          |
-| 5   | **CQRS**                         | Reads and writes as separate concerns with a command/query bus |
+| #   | Architecture                                   | Core Idea                                                      |
+| --- | ---------------------------------------------- | -------------------------------------------------------------- |
+| 1   | **Layered** (In Progress)                      | Horizontal layers: UI -> Service -> Repository -> DB           |
+| 2   | **Feature-Sliced Design** (Not started)        | Vertical slices by feature, strict dependency direction        |
+| 3   | **Hexagonal (Ports & Adapters)** (Not started) | Framework-free core, adapters at the edges                     |
+| 4   | **Clean Architecture** (Not started)           | Four concentric rings with strict inward dependencies          |
+| 5   | **CQRS** (Not started)                         | Reads and writes as separate concerns with a command/query bus |
 
 ## Turborepo Setup
 
@@ -79,11 +73,11 @@ This repository is configured as a Turborepo with:
 ```text
 architecture-playground/
 ├── apps/
-│   ├── 01-layered/
-│   ├── 02-fsd/
-│   ├── 03-hexagonal/
-│   ├── 04-clean-architecture/
-│   └── 05-cqrs/
+│   ├── 01-layered/              
+│   ├── 02-fsd/                  
+│   ├── 03-hexagonal/            
+│   ├── 04-clean-architecture/   
+│   └── 05-cqrs/                 
 ├── packages/
 │   └── database/
 │   └── ui/

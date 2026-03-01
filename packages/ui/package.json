@@ -11,6 +11,7 @@
 	"peerDependencies": {
 		"react": "^19"
 	},
+	"type": "module",
 	"devDependencies": {
 		"@tailwindcss/postcss": "catalog:",
 		"@types/node": "catalog:",
