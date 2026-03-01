@@ -73,11 +73,11 @@ This repository is configured as a Turborepo with:
 ```text
 architecture-playground/
 ├── apps/
-│   ├── 01-layered/              
-│   ├── 02-fsd/                  
-│   ├── 03-hexagonal/            
-│   ├── 04-clean-architecture/   
-│   └── 05-cqrs/                 
+│   ├── 01-layered/
+│   ├── 02-fsd/
+│   ├── 03-hexagonal/
+│   ├── 04-clean-architecture/
+│   └── 05-cqrs/
 ├── packages/
 │   └── database/
 │   └── ui/
@@ -87,7 +87,6 @@ architecture-playground/
 
 - `pnpm db:up` starts PostgreSQL via Docker Compose
 - `pnpm db:down` stops containers
-- `pnpm db:logs` tails PostgreSQL logs
 - `pnpm db:migrate` runs Prisma migrations
 - `pnpm db:generate` generates Prisma client
 - `pnpm db:studio` opens Prisma Studio
