@@ -1,4 +1,7 @@
-import { type ContactUpdateInput, type ContactCreateInput, contactRepository } from '@/repositories/contact.repository';
+import 'server-only';
+
+import { contactRepository } from '@/repositories/contact.repository';
+import { type ContactUpdateInput, type ContactCreateInput } from '@/types/contact';
 
 export const contactService = {
    async getAll() {
@@ -18,7 +21,7 @@ export const contactService = {
    },
 
    async create(data: ContactCreateInput) {
-      const existing = await contactRepository.getById(data.email);
+      const existing = await contactRepository.getByEmail(data.email);
       if (existing) throw new Error('Email already exists');
       return contactRepository.create(data);
    },

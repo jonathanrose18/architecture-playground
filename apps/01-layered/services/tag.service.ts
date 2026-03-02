@@ -1,4 +1,7 @@
-import { tagRepository, type TagCreateInput, type TagUpdateInput } from '@/repositories/tag.repository';
+import 'server-only';
+
+import { tagRepository } from '@/repositories/tag.repository';
+import type { TagCreateInput, TagUpdateInput } from '@/types/tag';
 
 export const tagService = {
    async getAll() {
@@ -19,7 +22,7 @@ export const tagService = {
 
    async create(data: TagCreateInput) {
       const existing = await tagRepository.getByName(data.name);
-      if (existing) throw new Error('Tag with name already exists');
+      if (existing) throw new Error('Tag already exists');
       return tagRepository.create(data);
    },
 
@@ -31,5 +34,15 @@ export const tagService = {
    async delete(id: string) {
       await this.getById(id);
       return tagRepository.delete(id);
+   },
+
+   async assignTag(contactId: string, tagId: string) {
+      await this.getById(tagId);
+      return tagRepository.assignTag(contactId, tagId);
+   },
+
+   async removeTag(contactId: string, tagId: string) {
+      await this.getById(tagId);
+      return tagRepository.removeTag(contactId, tagId);
    },
 };
