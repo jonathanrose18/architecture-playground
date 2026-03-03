@@ -4,7 +4,6 @@ import { contactRepository } from '@/repositories/contact.repository';
 import { tagService } from '@/services/tag.service';
 import type { ContactRepository, ContactUpdateInput, ContactCreateInput } from '@/types/contact';
 
-// Fix 3: Service typed against the interface, not the concrete implementation
 const repo: ContactRepository = contactRepository;
 
 export const contactService = {

@@ -32,9 +32,11 @@ export function CreateTagDialog() {
 
       try {
          await tagsApi.create({ name: name.trim() });
+
          toast.success('Tag created');
          setName('');
          setOpen(false);
+
          router.refresh();
       } catch (error) {
          toast.error(error instanceof Error ? error.message : 'Could not create tag');

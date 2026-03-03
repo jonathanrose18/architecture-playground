@@ -1,38 +1,40 @@
 import 'server-only';
 
 import { tagRepository } from '@/repositories/tag.repository';
-import type { TagCreateInput, TagUpdateInput } from '@/types/tag';
+import type { TagCreateInput, TagRepository, TagUpdateInput } from '@/types/tag';
+
+const repo: TagRepository = tagRepository;
 
 export const tagService = {
    async getAll() {
-      return tagRepository.getAll();
+      return repo.getAll();
    },
 
    async getById(id: string) {
-      const tag = await tagRepository.getById(id);
+      const tag = await repo.getById(id);
       if (!tag) throw new Error('Tag not found');
       return tag;
    },
 
    async getByName(name: string) {
-      const tag = await tagRepository.getByName(name);
+      const tag = await repo.getByName(name);
       if (!tag) throw new Error('Tag not found');
       return tag;
    },
 
    async create(data: TagCreateInput) {
-      const existing = await tagRepository.getByName(data.name);
+      const existing = await repo.getByName(data.name);
       if (existing) throw new Error('Tag already exists');
-      return tagRepository.create(data);
+      return repo.create(data);
    },
 
    async update(id: string, data: TagUpdateInput) {
       await tagService.getById(id);
-      return tagRepository.update(id, data);
+      return repo.update(id, data);
    },
 
    async delete(id: string) {
       await tagService.getById(id);
-      return tagRepository.delete(id);
+      return repo.delete(id);
    },
 };

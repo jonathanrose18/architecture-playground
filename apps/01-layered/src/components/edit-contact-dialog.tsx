@@ -18,6 +18,7 @@ import { toast } from '@workspace/ui/components/ui/sonner';
 import { contactsApi } from '@/lib/api';
 import { toContactFormState, formStateToPayload, type ContactFormState } from '@/lib/form-utils';
 import type { ContactWithTags } from '@/types/contact';
+
 import { ContactFormFields } from './contact-form-fields';
 
 export function EditContactDialog({ contact }: { contact: ContactWithTags }) {

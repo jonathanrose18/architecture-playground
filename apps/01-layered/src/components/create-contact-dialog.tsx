@@ -17,6 +17,7 @@ import { toast } from '@workspace/ui/components/ui/sonner';
 
 import { contactsApi } from '@/lib/api';
 import { emptyContactForm, formStateToPayload, type ContactFormState } from '@/lib/form-utils';
+
 import { ContactFormFields } from './contact-form-fields';
 
 export function CreateContactDialog() {
@@ -36,9 +37,11 @@ export function CreateContactDialog() {
 
       try {
          await contactsApi.create(formStateToPayload(form));
+
          toast.success('Contact created');
          setOpen(false);
          setForm(emptyContactForm);
+
          router.refresh();
       } catch (error) {
          toast.error(error instanceof Error ? error.message : 'Could not create contact');

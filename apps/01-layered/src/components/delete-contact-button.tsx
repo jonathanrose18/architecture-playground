@@ -29,8 +29,10 @@ export function DeleteContactButton({ contact }: { contact: ContactWithTags }) {
 
       try {
          await contactsApi.delete(contact.id);
+
          toast.success('Contact deleted');
          setOpen(false);
+
          router.refresh();
       } catch (error) {
          toast.error(error instanceof Error ? error.message : 'Could not delete contact');
