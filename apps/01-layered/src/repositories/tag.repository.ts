@@ -2,7 +2,7 @@ import 'server-only';
 
 import { prisma } from '@workspace/database';
 
-import { TagRepository } from '@/types/tag';
+import type { TagRepository } from '@/types/tag';
 
 export const tagRepository: TagRepository = {
    getAll: () => prisma.tag.findMany({ orderBy: { name: 'asc' } }),
