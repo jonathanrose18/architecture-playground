@@ -17,6 +17,10 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "test": {
+      "inputs": ["src/**", "e2e/**", "vitest.config.ts", "playwright.config.ts"],
+      "cache": false
+    },
     "db:generate": {
       "cache": false
     },
