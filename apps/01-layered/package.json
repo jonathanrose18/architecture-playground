@@ -16,14 +16,15 @@
 		"next": "catalog:",
 		"pg": "^8.18.0",
 		"react": "catalog:react19",
-		"react-dom": "catalog:react19"
+		"react-dom": "catalog:react19",
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@workspace/eslint-config": "workspace:*",
-		"@workspace/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:react19",
 		"@types/react-dom": "catalog:react19",
+		"@workspace/eslint-config": "workspace:*",
+		"@workspace/typescript-config": "workspace:*",
 		"eslint": "catalog:",
 		"typescript": "catalog:"
 	}

@@ -27,22 +27,12 @@ export const tagService = {
    },
 
    async update(id: string, data: TagUpdateInput) {
-      await this.getById(id);
+      await tagService.getById(id);
       return tagRepository.update(id, data);
    },
 
    async delete(id: string) {
-      await this.getById(id);
+      await tagService.getById(id);
       return tagRepository.delete(id);
-   },
-
-   async assignTag(contactId: string, tagId: string) {
-      await this.getById(tagId);
-      return tagRepository.assignTag(contactId, tagId);
-   },
-
-   async removeTag(contactId: string, tagId: string) {
-      await this.getById(tagId);
-      return tagRepository.removeTag(contactId, tagId);
    },
 };

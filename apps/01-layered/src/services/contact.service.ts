@@ -1,38 +1,54 @@
 import 'server-only';
 
 import { contactRepository } from '@/repositories/contact.repository';
-import { type ContactUpdateInput, type ContactCreateInput } from '@/types/contact';
+import { tagService } from '@/services/tag.service';
+import type { ContactRepository, ContactUpdateInput, ContactCreateInput } from '@/types/contact';
+
+// Fix 3: Service typed against the interface, not the concrete implementation
+const repo: ContactRepository = contactRepository;
 
 export const contactService = {
    async getAll() {
-      return contactRepository.getAll();
+      return repo.getAll();
    },
 
    async getById(id: string) {
-      const contact = await contactRepository.getById(id);
+      const contact = await repo.getById(id);
       if (!contact) throw new Error('Contact not found');
       return contact;
    },
 
    async getByEmail(email: string) {
-      const contact = await contactRepository.getByEmail(email);
+      const contact = await repo.getByEmail(email);
       if (!contact) throw new Error('Contact not found');
       return contact;
    },
 
    async create(data: ContactCreateInput) {
-      const existing = await contactRepository.getByEmail(data.email);
+      const existing = await repo.getByEmail(data.email);
       if (existing) throw new Error('Email already exists');
-      return contactRepository.create(data);
+      return repo.create(data);
    },
 
    async update(id: string, data: ContactUpdateInput) {
-      await this.getById(id);
-      return contactRepository.update(id, data);
+      await contactService.getById(id);
+      return repo.update(id, data);
    },
 
    async delete(id: string) {
-      await this.getById(id);
-      return contactRepository.delete(id);
+      await contactService.getById(id);
+      return repo.delete(id);
+   },
+
+   // Fix 4: tagService statt tagRepository (kein Cross-Layer-Import mehr)
+   // Fix 5: Redundanter Contact-Pre-Check entfernt — Prisma wirft bei ungültiger contactId
+   async assignTag(contactId: string, tagId: string) {
+      await tagService.getById(tagId);
+      return repo.assignTag(contactId, tagId);
+   },
+
+   async removeTag(contactId: string, tagId: string) {
+      await tagService.getById(tagId);
+      return repo.removeTag(contactId, tagId);
    },
 };

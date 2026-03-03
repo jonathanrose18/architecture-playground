@@ -16,13 +16,14 @@ import {
 import { toast } from '@workspace/ui/components/ui/sonner';
 
 import { contactsApi } from '@/lib/api';
-import { emptyContactForm, formStateToPayload, type ContactFormState } from '@/lib/form-utils';
+import { toContactFormState, formStateToPayload, type ContactFormState } from '@/lib/form-utils';
+import type { ContactWithTags } from '@/types/contact';
 import { ContactFormFields } from './contact-form-fields';
 
-export function CreateContactDialog() {
+export function EditContactDialog({ contact }: { contact: ContactWithTags }) {
    const router = useRouter();
 
-   const [form, setForm] = useState<ContactFormState>(emptyContactForm);
+   const [form, setForm] = useState<ContactFormState>(() => toContactFormState(contact));
    const [isSaving, setIsSaving] = useState(false);
    const [open, setOpen] = useState(false);
 
@@ -33,35 +34,41 @@ export function CreateContactDialog() {
    const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
       setIsSaving(true);
-
       try {
-         await contactsApi.create(formStateToPayload(form));
-         toast.success('Contact created');
+         await contactsApi.update(contact.id, formStateToPayload(form));
+         toast.success('Contact updated');
          setOpen(false);
-         setForm(emptyContactForm);
          router.refresh();
       } catch (error) {
-         toast.error(error instanceof Error ? error.message : 'Could not create contact');
+         toast.error(error instanceof Error ? error.message : 'Could not update contact');
       } finally {
          setIsSaving(false);
       }
    };
 
    return (
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog
+         open={open}
+         onOpenChange={nextOpen => {
+            setOpen(nextOpen);
+            if (nextOpen) setForm(toContactFormState(contact));
+         }}
+      >
          <DialogTrigger asChild>
-            <Button>Create contact</Button>
+            <Button size='sm' variant='outline'>
+               Edit
+            </Button>
          </DialogTrigger>
          <DialogContent>
             <DialogHeader>
-               <DialogTitle>Create contact</DialogTitle>
-               <DialogDescription>Add a new contact to your list.</DialogDescription>
+               <DialogTitle>Edit contact</DialogTitle>
+               <DialogDescription>Update the contact details.</DialogDescription>
             </DialogHeader>
             <form className='space-y-4' onSubmit={handleSubmit}>
-               <ContactFormFields idPrefix='create' form={form} onChange={setField} />
+               <ContactFormFields idPrefix={`edit-${contact.id}`} form={form} onChange={setField} />
                <DialogFooter>
                   <Button type='submit' disabled={isSaving}>
-                     {isSaving ? 'Creating...' : 'Create'}
+                     {isSaving ? 'Saving...' : 'Save'}
                   </Button>
                </DialogFooter>
             </form>

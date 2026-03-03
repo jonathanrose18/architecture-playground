@@ -17,36 +17,21 @@ import { Input } from '@workspace/ui/components/ui/input';
 import { Label } from '@workspace/ui/components/ui/label';
 import { toast } from '@workspace/ui/components/ui/sonner';
 
-async function getApiError(response: Response) {
-   try {
-      const data = (await response.json()) as { error?: string };
-      return data.error ?? 'Request failed';
-   } catch {
-      return 'Request failed';
-   }
-}
+import { tagsApi } from '@/lib/api';
 
 export function CreateTagDialog() {
    const router = useRouter();
-   const [open, setOpen] = useState(false);
+
    const [isSaving, setIsSaving] = useState(false);
    const [name, setName] = useState('');
+   const [open, setOpen] = useState(false);
 
-   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
-
       setIsSaving(true);
+
       try {
-         const response = await fetch('/api/tags', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name.trim() }),
-         });
-
-         if (!response.ok) {
-            throw new Error(await getApiError(response));
-         }
-
+         await tagsApi.create({ name: name.trim() });
          toast.success('Tag created');
          setName('');
          setOpen(false);
@@ -68,15 +53,10 @@ export function CreateTagDialog() {
                <DialogTitle>Create tag</DialogTitle>
                <DialogDescription>Create a new tag for assigning to contacts.</DialogDescription>
             </DialogHeader>
-            <form className='space-y-4' onSubmit={submit}>
+            <form className='space-y-4' onSubmit={handleSubmit}>
                <div className='grid gap-2'>
                   <Label htmlFor='create-tag-name'>Name</Label>
-                  <Input
-                     id='create-tag-name'
-                     required
-                     value={name}
-                     onChange={event => setName(event.target.value)}
-                  />
+                  <Input id='create-tag-name' required value={name} onChange={e => setName(e.target.value)} />
                </div>
                <DialogFooter>
                   <Button type='submit' disabled={isSaving}>

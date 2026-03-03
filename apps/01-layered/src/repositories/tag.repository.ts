@@ -11,16 +11,4 @@ export const tagRepository: TagRepository = {
    create: data => prisma.tag.create({ data }),
    delete: id => prisma.tag.delete({ where: { id } }),
    update: (id, data) => prisma.tag.update({ data, where: { id } }),
-   assignTag: async (contactId, tagId) => {
-      await prisma.contact.update({
-         where: { id: contactId },
-         data: { tags: { connect: { id: tagId } } },
-      });
-   },
-   removeTag: async (contactId, tagId) => {
-      await prisma.contact.update({
-         where: { id: contactId },
-         data: { tags: { disconnect: { id: tagId } } },
-      });
-   },
 };

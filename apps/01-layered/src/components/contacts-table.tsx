@@ -1,7 +1,14 @@
 import type { ReactNode } from 'react';
 
 import { Badge } from '@workspace/ui/components/ui/badge';
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
+import {
+   Card,
+   CardAction,
+   CardContent,
+   CardDescription,
+   CardHeader,
+   CardTitle,
+} from '@workspace/ui/components/ui/card';
 import {
    Table,
    TableBody,
@@ -12,26 +19,17 @@ import {
    TableRow,
 } from '@workspace/ui/components/ui/table';
 
-export type ContactTagOption = { id: string; name: string };
+import type { ContactWithTags } from '@/types/contact';
 
-export type ContactsTableContact = {
-   id: string;
-   firstName: string;
-   lastName: string;
-   email: string;
-   phone: string;
-   company: string;
-   address: string;
-   tags: ContactTagOption[];
-};
-
-type ContactsTableProps = {
-   contacts: ContactsTableContact[];
+export function ContactsTable({
+   contacts,
+   toolbar,
+   renderActions,
+}: {
+   contacts: ContactWithTags[];
    toolbar?: ReactNode;
-   renderActions: (contact: ContactsTableContact) => ReactNode;
-};
-
-export function ContactsTable({ contacts, toolbar, renderActions }: ContactsTableProps) {
+   renderActions: (contact: ContactWithTags) => ReactNode;
+}) {
    return (
       <main className='mx-auto w-full max-w-7xl p-6'>
          <Card>

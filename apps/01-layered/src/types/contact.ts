@@ -20,9 +20,11 @@ export type ContactUpdateInput = Partial<ContactCreateInput>;
 
 export type ContactRepository = {
    getAll: () => Promise<ContactWithTags[]>;
-   getById: (id: string) => Promise<Contact | null>;
+   getById: (id: string) => Promise<ContactWithTags | null>;
    getByEmail: (email: string) => Promise<Contact | null>;
-   create: (data: ContactCreateInput) => Promise<Contact>;
-   update: (id: string, data: ContactUpdateInput) => Promise<Contact>;
+   create: (data: ContactCreateInput) => Promise<ContactWithTags>;
+   update: (id: string, data: ContactUpdateInput) => Promise<ContactWithTags>;
    delete: (id: string) => Promise<Contact>;
+   assignTag: (contactId: string, tagId: string) => Promise<void>;
+   removeTag: (contactId: string, tagId: string) => Promise<void>;
 };
